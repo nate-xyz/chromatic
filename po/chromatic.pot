@@ -1,0 +1,103 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the chromatic package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: chromatic\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-05 03:38-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/io.github.nate_xyz.Chromatic.desktop.in:3
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:6 src/ui/window.ui:18
+msgid "Chromatic"
+msgstr ""
+
+#: data/io.github.nate_xyz.Chromatic.desktop.in:4
+msgid "Instrument Tuner"
+msgstr ""
+
+#: data/io.github.nate_xyz.Chromatic.desktop.in:5
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:7
+msgid "Fine-tune your instruments"
+msgstr ""
+
+#. Translators: Search terms to find this application. Do not translate or localize the semicolons! The list must also end with a semicolon.
+#: data/io.github.nate_xyz.Chromatic.desktop.in:12
+msgid "instrument;tuner;chromatic;"
+msgstr ""
+
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:8
+msgid "nate-xyz"
+msgstr ""
+
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:10
+msgid ""
+"Fine-tune your instruments with Chromatic. Displays exact frequency and "
+"equivalent note with octave, as well as the cents of error."
+msgstr ""
+
+#: data/io.github.nate_xyz.Chromatic.gschema.xml:7
+msgid "Manually select audio device"
+msgstr ""
+
+#: data/io.github.nate_xyz.Chromatic.gschema.xml:16
+msgid "Show gauge widget"
+msgstr ""
+
+#: src/ui/window.ui:164
+msgid "_Preferences"
+msgstr ""
+
+#: src/ui/window.ui:172
+msgid "_About Chromatic"
+msgstr ""
+
+#: src/ui/help-overlay.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr ""
+
+#: src/ui/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr ""
+
+#: src/ui/help-overlay.ui:20
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr ""
+
+#: src/ui/preferences_window.ui:18
+msgid "Audio Device"
+msgstr ""
+
+#: src/ui/preferences_window.ui:22
+msgid "Manually Select"
+msgstr ""
+
+#: src/ui/preferences_window.ui:23
+msgid ""
+"Chromatic will try to automatically detect running input devices if disabled."
+msgstr ""
+
+#: src/ui/preferences_window.ui:40
+msgid "Device"
+msgstr ""
+
+#: src/ui/preferences_window.ui:51
+msgid "UI"
+msgstr ""
+
+#: src/ui/preferences_window.ui:55
+msgid "Show Gauge"
+msgstr ""

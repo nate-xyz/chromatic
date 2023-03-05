@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="chromatic">
+	<schema id="io.github.nate_xyz.Chromatic" path="/io/github/nate_xyz/Chromatic/">
+		
+		<key name="choose-device" type="b">
+      <default>false</default>
+      <summary>Manually select audio device</summary>
+    </key>
+
+		<key name="selected-device" type="s">
+      <default>""</default>
+    </key>
+
+		<key name="show-gauge" type="b">
+      <default>true</default>
+      <summary>Show gauge widget</summary>
+    </key>
+
+	</schema>
+</schemalist>

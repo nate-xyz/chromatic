@@ -1,0 +1,13 @@
+data/io.github.nate_xyz.Chromatic.desktop.in
+data/io.github.nate_xyz.Chromatic.appdata.xml.in
+data/io.github.nate_xyz.Chromatic.gschema.xml
+
+src/window.rs
+src/util.rs
+src/recorder.rs
+src/gauge.rs
+src/preferences_window.rs
+src/toasts.rs
+src/ui/window.ui
+src/ui/help-overlay.ui
+src/ui/preferences_window.ui
