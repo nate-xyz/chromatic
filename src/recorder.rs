@@ -26,7 +26,8 @@ use std::{cell::Cell, cell::RefCell, error::Error, rc::Rc, fmt, thread};
 use std::sync::mpsc::*;
 use log::{debug, error};
 
-use crossbeam_channel;
+//use crossbeam_channel;
+use std::sync::mpsc;
 
 use pulsectl::controllers::DeviceControl;
 use pulsectl::controllers::SourceController;
@@ -42,6 +43,8 @@ use super::window::AudioAction;
 use super::util;
 use super::toasts;
 use super::i18n::i18n_k;
+
+
 
 #[derive(Debug)]
 struct RecorderError(String);
@@ -67,7 +70,7 @@ mod imp {
         pub sender: RefCell<Option<Sender<AudioAction>>>,
         pub settings: gio::Settings,
         
-        pub tx: RefCell<Option<crossbeam_channel::Sender<()>>>,
+        pub tx: RefCell<Option<mpsc::Sender<()>>>,
         // pub rx: RefCell<Option<crossbeam_channel::Receiver<()>>>,
     }
 
@@ -200,11 +203,11 @@ impl Recorder {
                 match self.running_mic_index(manual_device_name.clone()) {
                     // and start the stream with the index
                     Ok(index) => {
-                        debug!("got manual device... {}", manual_device_name);
+                        debug!("switch_stream -> got manual device... {}", manual_device_name);
                         return self.start_stream(Some(index));
                     }
                     Err(e) => {
-                        error!("unable to retrieve device {}", e);
+                        error!("switch_stream -> unable to retrieve device {}", e);
                         toasts::add_error_toast(i18n_k("Unable to retrieve device ({device_name})", &[("device_name", &manual_device_name)]));
 
                     },
@@ -217,13 +220,13 @@ impl Recorder {
         match self.running_mic_index(device_name.clone()) {
             // and start the stream with the index
             Ok(index) => {
-                debug!("got running device...");
+                debug!("switch_stream -> got running device...");
                 self.start_stream(Some(index))?;
                 imp.settings.set_string("selected-device", &device_name)?;
                 return Ok(());
             }
             Err(e) => {
-                error!("{},unable to retrieve device ", e);
+                error!("switch_stream -> {},unable to retrieve device ", e);
                 toasts::add_error_toast(i18n_k("Unable to retrieve device ({device_name})", &[("device_name", &device_name)]));
             },
         }
@@ -306,7 +309,8 @@ impl Recorder {
         let (sender, receiver) = channel();
         
         // Additional channel to kill thread when switching devices
-        let (tx, rx) = crossbeam_channel::unbounded::<()>();
+        //let (tx, rx) = crossbeam_channel::unbounded::<()>();
+        let (tx, rx) = mpsc::channel::<()>();
 
         if !imp.tx.borrow().as_ref().is_none() {
             debug!("killing previous thread with drop send");
@@ -361,14 +365,17 @@ impl Recorder {
                 }
                 
                 //kill stream thread if channel disconnect
-                if let Err(e) = rx.try_recv() {
-                    if e == crossbeam_channel::TryRecvError::Disconnected {
-                        error!("disconnected crossbeam, stream should end");
+                match rx.try_recv() {
+                    Ok(_) | Err(mpsc::TryRecvError::Disconnected) => {
+                        error!("disconnected channel, stream should end");
                         break;
                     }
+                    Err(mpsc::TryRecvError::Empty) => {}
                 }
+
             }
 
+            debug!("stream closing ...");
             stream.close().unwrap();
         });
 

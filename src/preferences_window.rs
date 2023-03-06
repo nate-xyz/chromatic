@@ -147,14 +147,23 @@ impl PreferencesWindow {
                 let imp = this.imp();
                 let device_name = imp.settings.string("selected-device").to_string();
 
-                match util::recorder().switch_stream(Some(device_name.clone())) {
-                    Ok(_) => {
-                        debug!("switched streams");
-                        imp.device_row.set_subtitle(&device_name);
-                        this.set_device_selected(device_name);
-                    },
-                    Err(e) => debug!("{}", e),
+
+                let selected = imp.device_row.selected();
+                let device_name_row = imp.devices_model.string(selected).unwrap().to_string();
+
+                if device_name != device_name_row {
+                    match util::recorder().switch_stream(Some(device_name.clone())) {
+                        Ok(_) => {
+                            debug!("switched streams");
+                            imp.device_row.set_subtitle(&device_name);
+                            this.set_device_selected(device_name);
+                        },
+                        Err(e) => debug!("{}", e),
+                    }
+                } else {
+                    debug!("already set from row");
                 }
+
 
             }),
         );
@@ -167,6 +176,8 @@ impl PreferencesWindow {
                 let imp = this.imp();
                 let manual = imp.settings.boolean("choose-device");
                 let device_name = imp.settings.string("selected-device").to_string();
+
+
 
                 if manual {
                     match util::recorder().switch_stream(None) {
@@ -236,7 +247,9 @@ impl PreferencesWindow {
         let mut array = Vec::new();
         let mut handler = SourceController::create().unwrap();
         for device in handler.list_devices()? {
-            array.push(device.description.unwrap());
+            if device.monitor.is_none() {
+                array.push(device.description.unwrap());
+            }           
         }
 
         Ok(array)

@@ -57,8 +57,15 @@ mod imp {
         #[template_child(id = "cents_label")]
         pub cents_label: TemplateChild<gtk::Label>,
 
-        #[template_child(id = "graph_bin")]
+        #[template_child(id = "gauge_bin")]
         pub gauge_bin: TemplateChild<adw::Bin>,
+
+        #[template_child(id = "gauge_box")]
+        pub gauge_box: TemplateChild<gtk::Box>,
+
+        
+        #[template_child(id = "note_box")]
+        pub note_box: TemplateChild<gtk::Box>,
 
         pub gauge: RefCell<Option<Gauge>>,
         pub base_pitch: Cell<f64>,
@@ -67,6 +74,7 @@ mod imp {
         pub recorder: Rc<Recorder>,
         pub receiver: RefCell<Option<Receiver<AudioAction>>>,
         pub settings: gio::Settings,
+        pub show_gauge: Cell<bool>,
     }
 
     #[glib::object_subclass]
@@ -92,6 +100,8 @@ mod imp {
                 frequency_label: TemplateChild::default(),
                 cents_label: TemplateChild::default(),
                 gauge_bin: TemplateChild::default(),
+                gauge_box: TemplateChild::default(),
+                note_box: TemplateChild::default(),
                 gauge: RefCell::new(None),
                 base_pitch: Cell::new(440.0),
                 frequency: Cell::new(0.0),
@@ -99,6 +109,7 @@ mod imp {
                 recorder: Rc::new(Recorder::new(sender)),
                 receiver: RefCell::new(Some(r)),
                 settings: util::settings_manager(),
+                show_gauge: Cell::new(true),
             }
         }
     }
@@ -129,9 +140,35 @@ impl Window {
         imp.gauge_bin.set_child(Some(&gauge));
         
         self.imp().settings
-            .bind("show-gauge", &gauge, "visible")
+            .bind("show-gauge", imp.gauge_box.upcast_ref::<glib::Object>(), "visible")
             .flags(SettingsBindFlags::DEFAULT)
             .build();
+
+        let show = imp.settings.boolean("show-gauge");
+        if show {
+            imp.gauge_box.set_height_request(200);
+            imp.note_box.set_vexpand(false);
+        } else {
+            imp.gauge_box.set_height_request(0);
+            imp.note_box.set_vexpand(true);
+        }
+        imp.show_gauge.set(show);
+
+        imp.settings.connect_changed(
+            Some("show-gauge"),
+            clone!(@strong self as this => move |_settings, _name| {
+                let imp = this.imp();
+                let show = imp.settings.boolean("show-gauge");
+                if show {
+                    imp.gauge_box.set_height_request(200);
+                    imp.note_box.set_vexpand(false);
+                } else {
+                    imp.gauge_box.set_height_request(0);
+                    imp.note_box.set_vexpand(true);
+                }
+                imp.show_gauge.set(show);
+            }),
+        );
 
         imp.gauge.replace(Some(gauge));
 
@@ -241,7 +278,11 @@ impl Window {
 
             imp.cents.set(cents);
 
-            imp.gauge.borrow().as_ref().unwrap().set_gauge_position(cents);
+            if self.imp().show_gauge.get() {
+                imp.gauge.borrow().as_ref().unwrap().set_gauge_position(cents);
+            }
+
+            
         }
     }
 

@@ -249,8 +249,8 @@ impl Gauge {
     fn draw(&self, context: &cairo::Context) -> Result<(), Box<dyn Error>> {
         //let bg_color = "#2c3338";
         //let color = self.hex_to_rgb(bg_color);
-        context.set_source_rgb(0.0, 0.0, 0.0);
-        context.paint()?;
+        //context.set_source_rgb(0.0, 0.0, 0.0);
+        // /context.paint()?;
         self.redraw_bg(context)?;
         self.redraw_gauge(context)?;
         Ok(())
