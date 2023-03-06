@@ -22,7 +22,8 @@ use adw::prelude::*;
 use adw::subclass::prelude::*;
 use gtk::{gio, gio::SettingsBindFlags, glib, glib::clone, glib::Receiver};
 
-use std::{cell::Cell, cell::RefCell, rc::Rc};
+use std::{cell::{Cell, RefCell}, rc::Rc};
+use std::time::{Duration, Instant};
 use log::debug;
 
 use pitch_calc::{Hz, LetterOctave};
@@ -32,6 +33,8 @@ use super::recorder::Recorder;
 use super::gauge::Gauge;
 use super::util;
 use super::toasts;
+
+
 
 #[derive(Clone, Debug)]
 pub enum AudioAction {
@@ -75,6 +78,9 @@ mod imp {
         pub receiver: RefCell<Option<Receiver<AudioAction>>>,
         pub settings: gio::Settings,
         pub show_gauge: Cell<bool>,
+
+        pub hang_duration: Cell<u64>,
+        pub hang_time: RefCell<Option<std::time::Instant>>
     }
 
     #[glib::object_subclass]
@@ -110,6 +116,8 @@ mod imp {
                 receiver: RefCell::new(Some(r)),
                 settings: util::settings_manager(),
                 show_gauge: Cell::new(true),
+                hang_duration: Cell::new(3),
+                hang_time: RefCell::new(None),
             }
         }
     }
@@ -232,11 +240,22 @@ impl Window {
     pub fn update_frequency(&self, frequency: f32) {
         let imp = self.imp();
         if frequency <= 0.0 {
-            imp.note_label.set_label("<span size=\"400%\">--</span>");
-            imp.frequency_label.set_label("-- Hz");
-            imp.cents_label.set_label("");
+            if imp.hang_time.borrow().is_none() {
+                imp.hang_time.replace(Some(Instant::now()));
+            } else {
+                if imp.hang_time.borrow().as_ref().unwrap().elapsed() > Duration::from_secs(imp.hang_duration.get()) {
+                    imp.note_label.set_label("<span size=\"400%\">--</span>");
+                    imp.frequency_label.set_label("-- Hz");
+                    imp.cents_label.set_label("");
+                    imp.hang_time.replace(None);
+                }
+            }
 
         } else {
+            if !imp.hang_time.borrow().is_none() {
+                imp.hang_time.replace(None);
+            }
+
             imp.frequency_label.set_label(&format!("{:.2} Hz", frequency));
 
             let letter_octave = Hz(frequency).letter_octave();
@@ -259,7 +278,7 @@ impl Window {
                 14 => "A♯",
                 15 => "B♭",
                 16 => "B",
-                17_u64..=u64::MAX => "C",
+                17_u64..=u64::MAX => "?",
             };
 
             imp.note_label.set_label(&format!("<span size=\"400%\">{}</span><span baseline_shift=\"subscript\" size=\"150%\">{}</span>", letter, letter_octave.1));

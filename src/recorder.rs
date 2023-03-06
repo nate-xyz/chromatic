@@ -300,7 +300,7 @@ impl Recorder {
         // Settings for an inputstream.
         // Here we pass the stream parameters we set before,
         // the sample rate of the mic and the amount values we want to receive
-        let buffer_size = 1024 * 3;
+        let buffer_size = 1024 * 6;
 
         let input_settings =
             portaudio::InputStreamSettings::new(input_params, default_sample_rate, buffer_size);
