@@ -15,7 +15,7 @@
 
           <child>
             <object class="AdwPreferencesGroup">
-              <property name="title" translatable="yes">Audio Device</property>
+              <property name="title" translatable="yes">Audio</property>
       
               <child>
                 <object class="AdwActionRow">
@@ -41,6 +41,23 @@
                 </object>
               </child>
     
+
+              <child>
+                <object class="AdwActionRow">
+                  <property name="title" translatable="yes">Buffer Size</property>
+                  <property name="subtitle" translatable="yes">Stream buffer size, changes frequency update interval.</property>     
+                  <property name="activatable-widget">buffer_spin</property>
+      
+                  <child>
+                    <object class="GtkSpinButton" id="buffer_spin">
+                      <property name="valign">center</property>
+                      <property name="adjustment">buffer_adj</property>
+                      <property name="numeric">true</property>
+                    </object>
+                  </child>
+                </object>
+              </child>
+
       
     
             </object>
@@ -66,6 +83,59 @@
                 </object>
               </child>
 
+              <child>
+                <object class="AdwActionRow">
+                  <property name="title" translatable="yes">Gauge Pin Hover Time</property>
+                  <property name="subtitle" translatable="yes">Duration (in seconds) the gauge pin will hover before returning to baseline.</property>     
+                  <property name="activatable-widget">gauge_hang_spin</property>
+      
+                  <child>
+                    <object class="GtkSpinButton" id="gauge_hang_spin">
+                      <property name="valign">center</property>
+                      <property name="adjustment">gauge_hang_adj</property>
+                      <property name="numeric">true</property>
+                      <property name="digits">1</property>
+                    </object>
+                  </child>
+                </object>
+              </child>
+
+
+              <child>
+                <object class="AdwActionRow">
+                  <property name="title" translatable="yes">Label Update Hang Time</property>
+                  <property name="subtitle" translatable="yes">Duration (in seconds) the labels will hang before clearing display.</property>     
+                  <property name="activatable-widget">label_hang_spin</property>
+      
+                  <child>
+                    <object class="GtkSpinButton" id="label_hang_spin">
+                      <property name="valign">center</property>
+                      <property name="adjustment">label_hang_adj</property>
+                      <property name="numeric">true</property>
+                      <property name="digits">1</property>
+                    </object>
+                  </child>
+                </object>
+              </child>
+
+              <child>
+                <object class="AdwActionRow">
+                  <property name="title" translatable="yes">Gauge Pin Resting Position</property>
+                  <property name="subtitle" translatable="yes">Baseline position the pin returns to after hover time.</property>     
+                  <property name="activatable-widget">gauge_rest_spin</property>
+      
+                  <child>
+                    <object class="GtkSpinButton" id="gauge_rest_spin">
+                      <property name="valign">center</property>
+                      <property name="adjustment">gauge_rest_adj</property>
+                      <property name="numeric">true</property>
+                    </object>
+                  </child>
+                </object>
+              </child>
+
+
+
             </object>
           </child>
 
@@ -74,5 +144,36 @@
 
   </template>
 
+  <object class="GtkAdjustment" id="buffer_adj">
+    <property name="upper">10240</property>
+    <property name="lower">1024</property>
+    <property name="value">6144</property>
+    <property name="step_increment">1024</property>
+    <property name="page_increment">10</property>
+  </object>
+
+  <object class="GtkAdjustment" id="gauge_hang_adj">
+    <property name="upper">5</property>
+    <property name="lower">0.5</property>
+    <property name="value">1</property>
+    <property name="step_increment">0.5</property>
+    <property name="page_increment">10</property>
+  </object>
+
+  <object class="GtkAdjustment" id="label_hang_adj">
+    <property name="upper">5</property>
+    <property name="lower">0.5</property>
+    <property name="value">1</property>
+    <property name="step_increment">0.5</property>
+    <property name="page_increment">10</property>
+  </object>
+
+  <object class="GtkAdjustment" id="gauge_rest_adj">
+    <property name="upper">50</property>
+    <property name="lower">-50</property>
+    <property name="value">-45</property>
+    <property name="step_increment">5</property>
+    <property name="page_increment">10</property>
+  </object>
 
 </interface>

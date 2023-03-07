@@ -24,17 +24,20 @@
 use adw::prelude::*;
 use adw::subclass::prelude::*;
 
-use gtk::{cairo, glib, glib::clone, glib::Receiver, glib::Sender};
+use gtk::{cairo, glib, glib::clone, glib::Receiver, glib::Sender, gio};
 
 use std::{cell::Cell, cell::RefCell, error::Error, f64::consts::PI};
 
 use log::{debug, error};
 
 use std::thread;
-use std::time::Duration;
+use std::time::{Duration, Instant};
+
+//use crossbeam_channel;
+use std::sync::mpsc;
 
 
-use crossbeam_channel;
+use super::util;
 
 #[derive(Clone, Debug)]
 pub enum GaugeAction {
@@ -44,20 +47,25 @@ pub enum GaugeAction {
 mod imp {
     use super::*;
 
-    #[derive(Debug, Default)]
+    #[derive(Debug)]
     pub struct Gauge {
         pub width: Cell<u32>,
         pub height: Cell<u32>,
         pub gauge_pos: Cell<f64>,
         //pub gauge_end_pos: Cell<f64>,
         pub gauge_range: Cell<f64>,
+        pub hover_time: Cell<f64>,
+        pub gauge_rest_position: Cell<i32>,
+       
         pub drawing_area: gtk::DrawingArea,
 
         pub sender: RefCell<Option<Sender<GaugeAction>>>,
         pub receiver: RefCell<Option<Receiver<GaugeAction>>>,
 
-        pub tx: RefCell<Option<crossbeam_channel::Sender<i32>>>,
-        pub rx: RefCell<Option<crossbeam_channel::Receiver<i32>>>,
+        pub tx: RefCell<Option<mpsc::Sender<i32>>>,
+
+        pub settings: gio::Settings,
+        
     }
 
     #[glib::object_subclass]
@@ -75,11 +83,13 @@ mod imp {
                 gauge_pos: Cell::new(0.0),
                 //gauge_end_pos: Cell::new(0.0),
                 gauge_range: Cell::new(0.0),
+                hover_time: Cell::new(1.0),
+                gauge_rest_position: Cell::new(-45),
                 drawing_area: gtk::DrawingArea::new(),
                 sender: RefCell::new(Some(sender)),
                 receiver: RefCell::new(Some(receiver)),
                 tx: RefCell::new(None),
-                rx: RefCell::new(None),
+                settings: util::settings_manager(),
             }
         }
     }
@@ -119,7 +129,6 @@ impl Gauge {
     fn process_action(&self, action: GaugeAction) -> glib::Continue {
         match action {
             GaugeAction::UpdateGaugePos(pos) => {
-                //debug!("FREQUENCY {:?}", freq);
                 self.update_gauge_position(pos);
                 self.imp().drawing_area.queue_draw();
             }
@@ -158,10 +167,21 @@ impl Gauge {
             }));
 
         self.set_child(Some(&imp.drawing_area));
-
+        
         self.start_drawing_thread();
     }
 
+    //update position externally
+    pub fn set_gauge_position(&self, cents: i32) {
+        if !self.imp().tx.borrow().as_ref().is_none() {
+            match self.imp().tx.borrow().as_ref().unwrap().send(cents) {
+                Ok(_) => (),
+                Err(e) => error!("{}", e),
+            }
+        }
+    }
+
+    //update from internal channel
     fn update_gauge_position(&self, pos: i32) {
         let pos = pos as f64;
         //debug!("update_gauge_position {}", pos);
@@ -170,41 +190,49 @@ impl Gauge {
         }
     }
 
-    pub fn set_gauge_position(&self, cents: i32) {
-        match self.imp().tx.borrow().as_ref().unwrap().send(cents) {
-            Ok(_) => (),
-            Err(e) => error!("{}", e),
-        }
+    fn retrieve_settings(&self) {
+        let imp = self.imp();
+
+        imp.hover_time.set( imp.settings.double("gauge-hang"));
+        imp.gauge_rest_position.set(imp.settings.int("gauge-rest-position"))
     }
 
-    //SHOULD ONLY BE CALLED ONCE
-    fn start_drawing_thread(&self) {
+
+    pub fn start_drawing_thread(&self) {
         let imp = self.imp();
+        
+        self.retrieve_settings();
+
+        let mut end_goal = 0; //where the gauge is try to get to at any moment. changes from input on channel
+        let mut current_pos = imp.gauge_pos.get() as i32; //current gauge position
+        let refresh_milli = 8; //thread refresh rate
+        let hover_amount = (1000.0 * imp.hover_time.get()) as u64; //hover time when no msg received on channel before return to baseline position
+        let rest_position = imp.gauge_rest_position.get(); //baseline position
+        let mut hover_time: Option<std::time::Instant> = None;
+        debug!("hover time {}, rest_position {}", hover_amount, rest_position);
+
         let glib_sender = imp.sender.borrow().as_ref().unwrap().clone();
+        let (tx, rx) = mpsc::channel::<i32>();
 
-        let mut end_goal = 0;
-        let mut current_pos = imp.gauge_pos.get() as i32;
-        let refresh_milli = 8;
-        let hover_amount = (1000 as u64 / 8) as i32;
-        let mut hover_time = hover_amount;
-        let rest_position = -45;
-
-        //let (tx, rx) = mpsc::channel::<i32>();
-        let (tx, rx) = crossbeam_channel::unbounded::<i32>();
-
+        if !imp.tx.borrow().as_ref().is_none() {
+            debug!("killing previous thread with drop send");
+            drop(imp.tx.borrow().as_ref()); //drop should kill previous stream 
+        }
         imp.tx.replace(Some(tx));
-        imp.rx.replace(Some(rx.clone()));
 
         thread::spawn(move || loop {
             thread::sleep(Duration::from_millis(refresh_milli));
-            //println!("Now we should decrease stats and update day count…");
 
             match rx.try_recv() {
                 Ok(new_goal) => {
                     end_goal = new_goal;
-                    hover_time = hover_amount;
+                    //hover_time = hover_amount;
+                    if !hover_time.is_none() {
+                        hover_time = None;
+                    }
                 },
-                Err(_) => {
+
+                Err(mpsc::TryRecvError::Empty) => {
                     if current_pos == end_goal {
                         //reached goal
                         if end_goal == rest_position {
@@ -213,19 +241,26 @@ impl Gauge {
                                 Err(_) => (),
                             }
                         } else { //hover on location
-                            if hover_time > 0 {
-                                hover_time -= 1;
+                            if hover_time.is_none() {
+                                hover_time = Some(Instant::now());
                             } else {
-                                hover_time = hover_amount;
-                                match rx.try_recv() {
-                                    Ok(new_goal) => end_goal = new_goal,
-                                    Err(_) => end_goal = rest_position,
+                                if hover_time.unwrap().elapsed() > Duration::from_millis(hover_amount) {
+                                    end_goal = rest_position;
+                                    hover_time = None;
                                 }
                             }
                         }
                     }
-                }
+                },
+
+                Err(mpsc::TryRecvError::Disconnected) => {
+                    error!("disconnected channel, stream should end");
+                    break;
+                },
+
             }
+
+
 
             if current_pos != end_goal {
                 if (current_pos - end_goal).abs() < 2 {
@@ -240,7 +275,7 @@ impl Gauge {
             match glib_sender.send(GaugeAction::UpdateGaugePos(current_pos)) {
                 Ok(_) => (),
                 Err(e) => {
-                    error!("SEND ERROR {}", e);
+                    error!("Gauge draw thread error: {}", e);
                 }
             }
         });

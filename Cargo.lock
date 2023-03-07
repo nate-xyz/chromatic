@@ -124,7 +124,6 @@ name = "chromatic"
 version = "0.1.0"
 dependencies = [
  "aubio-rs",
- "crossbeam-channel",
  "fuzzy-matcher",
  "gettext-rs",
  "gtk4",
@@ -136,25 +135,6 @@ dependencies = [
  "pretty_env_logger",
  "pulsectl-rs",
  "regex",
-]
-
-[[package]]
-name = "crossbeam-channel"
-version = "0.5.7"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cf2b3e8478797446514c91ef04bafcb59faba183e621ad488df88983cc14128c"
-dependencies = [
- "cfg-if",
- "crossbeam-utils",
-]
-
-[[package]]
-name = "crossbeam-utils"
-version = "0.8.15"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3c063cd8cc95f5c377ed0d4b49a4b21f632396ff690e8470c29b3359b346984b"
-dependencies = [
- "cfg-if",
 ]
 
 [[package]]

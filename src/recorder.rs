@@ -23,11 +23,9 @@ use adw::subclass::prelude::*;
 use gtk::{gio, glib, glib::Sender};
 
 use std::{cell::Cell, cell::RefCell, error::Error, rc::Rc, fmt, thread};
+use std::sync::mpsc;
 use std::sync::mpsc::*;
 use log::{debug, error};
-
-//use crossbeam_channel;
-use std::sync::mpsc;
 
 use pulsectl::controllers::DeviceControl;
 use pulsectl::controllers::SourceController;
@@ -68,10 +66,10 @@ mod imp {
         pub buffer_size: Cell<u32>,
         pub pa: RefCell<Option<Rc<portaudio::PortAudio>>>,
         pub sender: RefCell<Option<Sender<AudioAction>>>,
-        pub settings: gio::Settings,
         
         pub tx: RefCell<Option<mpsc::Sender<()>>>,
         // pub rx: RefCell<Option<crossbeam_channel::Receiver<()>>>,
+        pub settings: gio::Settings,
     }
 
     #[glib::object_subclass]
@@ -86,9 +84,9 @@ mod imp {
                 buffer_size: Cell::new(1024),
                 pa: RefCell::new(None),
                 sender: RefCell::new(None),
-                settings: util::settings_manager(),
                 tx: RefCell::new(None),
                 // rx: RefCell::new(None),
+                settings: util::settings_manager(),
             }
         }
     }
@@ -300,7 +298,11 @@ impl Recorder {
         // Settings for an inputstream.
         // Here we pass the stream parameters we set before,
         // the sample rate of the mic and the amount values we want to receive
-        let buffer_size = 1024 * 6;
+        
+        let buffer_size_setting: u32 = imp.settings.double("buffer-size") as u32;
+        let buffer_size: u32 = 1024 * (buffer_size_setting / 1024);
+
+        debug!("buffer size {}", buffer_size);
 
         let input_settings =
             portaudio::InputStreamSettings::new(input_params, default_sample_rate, buffer_size);
@@ -316,7 +318,7 @@ impl Recorder {
             debug!("killing previous thread with drop send");
             drop(imp.tx.borrow().as_ref()); //drop should kill previous stream 
         }
-        imp.tx.replace(Some(tx.clone()));
+        imp.tx.replace(Some(tx));
 
         // A callback function that should be as short as possible so we send all the info to a different thread
         let callback =

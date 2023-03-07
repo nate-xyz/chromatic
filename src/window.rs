@@ -70,7 +70,7 @@ mod imp {
         #[template_child(id = "note_box")]
         pub note_box: TemplateChild<gtk::Box>,
 
-        pub gauge: RefCell<Option<Gauge>>,
+        pub gauge: Rc<RefCell<Option<Gauge>>>,
         pub base_pitch: Cell<f64>,
         pub frequency: Cell<f64>,
         pub cents: Cell<i32>,
@@ -108,7 +108,7 @@ mod imp {
                 gauge_bin: TemplateChild::default(),
                 gauge_box: TemplateChild::default(),
                 note_box: TemplateChild::default(),
-                gauge: RefCell::new(None),
+                gauge: Rc::new(RefCell::new(None)),
                 base_pitch: Cell::new(440.0),
                 frequency: Cell::new(0.0),
                 cents: Cell::new(0),
@@ -237,13 +237,19 @@ impl Window {
         }
     }
 
+
+    pub fn update_settings(&self) {
+        let imp = self.imp();
+        imp.hang_duration.set((1000.0 * imp.settings.double("label-hang")) as u64)
+    }
+
     pub fn update_frequency(&self, frequency: f32) {
         let imp = self.imp();
         if frequency <= 0.0 {
             if imp.hang_time.borrow().is_none() {
                 imp.hang_time.replace(Some(Instant::now()));
             } else {
-                if imp.hang_time.borrow().as_ref().unwrap().elapsed() > Duration::from_secs(imp.hang_duration.get()) {
+                if imp.hang_time.borrow().as_ref().unwrap().elapsed() > Duration::from_millis(imp.hang_duration.get()) {
                     imp.note_label.set_label("<span size=\"400%\">--</span>");
                     imp.frequency_label.set_label("-- Hz");
                     imp.cents_label.set_label("");
@@ -312,5 +318,10 @@ impl Window {
     pub fn recorder(&self) -> Rc<Recorder> {
         self.imp().recorder.clone()
     }
+
+    pub fn gauge(&self) -> Rc<RefCell<Option<Gauge>>> {
+        self.imp().gauge.clone()
+    }
+
 
 }

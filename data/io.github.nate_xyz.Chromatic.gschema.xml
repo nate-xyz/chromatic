@@ -16,5 +16,28 @@
       <summary>Show gauge widget</summary>
     </key>
 
+    <key name="buffer-size" type="d">
+      <range min="1024.0" max="10240.0"/>
+      <default>6144.0</default>
+      <summary>Stream buffer size</summary>
+    </key>
+
+    <key name="gauge-hang" type="d">
+      <range min="0.5" max="5.0"/>
+      <default>1</default>
+    </key>
+
+    <key name="label-hang" type="d">
+      <range min="0.5" max="5.0"/>
+      <default>3</default>
+    </key>
+
+    <key name="gauge-rest-position" type="i">
+      <range min="-50" max="50"/>
+      <default>-45</default>
+    </key>
+
+
+
 	</schema>
 </schemalist>
