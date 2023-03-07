@@ -149,7 +149,7 @@ impl Recorder {
                 Ok(index) => {
                     debug!("got manual device... {}", manual_device_name);
                     return self.start_stream(Some(index));
-                }
+                },
                 Err(e) => {
                     error!("unable to retrieve device {}", e);
                     toasts::add_error_toast(i18n_k("Unable to retrieve device ({device_name})", &[("device_name", &manual_device_name)]));
@@ -170,7 +170,7 @@ impl Recorder {
                         self.start_stream(Some(index))?;
                         imp.settings.set_string("selected-device", &device_name)?;
                         return Ok(());
-                    }
+                    },
                     Err(e) => {
                         error!("{},unable to retrieve device ", e);
                         toasts::add_error_toast(i18n_k("Unable to retrieve device ({device_name})", &[("device_name", &device_name)]));
@@ -187,13 +187,10 @@ impl Recorder {
     }
 
 
-    pub fn switch_stream(&self, device_name: Option<String>) -> Result<(), Box<dyn Error>> {
-        //debug!("retrieved {}", device_name);
+    pub fn switch_stream(&self, device_option: Option<String>) -> Result<(), Box<dyn Error>> {
         let imp = self.imp();
 
-
-        if device_name.is_none() {
-
+        if device_option.is_none() {
             let manual: bool = imp.settings.boolean("choose-device");
             let manual_device_name = imp.settings.string("selected-device").to_string();
 
@@ -203,17 +200,33 @@ impl Recorder {
                     Ok(index) => {
                         debug!("switch_stream -> got manual device... {}", manual_device_name);
                         return self.start_stream(Some(index));
-                    }
+                    },
                     Err(e) => {
                         error!("switch_stream -> unable to retrieve device {}", e);
                         toasts::add_error_toast(i18n_k("Unable to retrieve device ({device_name})", &[("device_name", &manual_device_name)]));
-
                     },
                 }
             }
+        } 
 
-        }
-        let device_name = device_name.unwrap();
+        let device_name = match device_option {
+            Some(name) => name,
+            None => {
+                match self.running_device() {
+                    //if able to retrieve, get the device's index from portaudio
+                    Ok(name) => {
+                        debug!("switch_stream -> retrieved {}", name);
+                        name
+                    },
+                    Err(e) => {
+                        error!("switch_stream -> {}, starting stream w/ default option", e);
+
+                        //otherwise, just start the stream with the default portaudio option
+                        return self.start_stream(None);
+                    }
+                }
+            },
+        };
 
         match self.running_mic_index(device_name.clone()) {
             // and start the stream with the index
@@ -222,12 +235,13 @@ impl Recorder {
                 self.start_stream(Some(index))?;
                 imp.settings.set_string("selected-device", &device_name)?;
                 return Ok(());
-            }
+            },
             Err(e) => {
                 error!("switch_stream -> {},unable to retrieve device ", e);
                 toasts::add_error_toast(i18n_k("Unable to retrieve device ({device_name})", &[("device_name", &device_name)]));
             },
         }
+
 
         //otherwise, just start the stream with the default portaudio option
         return self.start_stream(None);
