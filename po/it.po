@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: chromatic\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-07 12:49-0500\n"
-"PO-Revision-Date: 2023-03-06 19:17+0100\n"
+"PO-Revision-Date: 2023-03-07 19:57+0100\n"
 "Last-Translator: Albano Battistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -48,14 +48,18 @@ msgid ""
 "octave, and displays the cents error. Cents are displayed on an analog gauge "
 "to make tuning more visually intuitive."
 msgstr ""
+"Perfeziona i tuoi strumenti con Chromatic. Chromatic rileva la frequenza "
+"dell'ingresso audio e lo converte in una nota musicale con il semitono corretto e "
+"ottava e visualizza l'errore dei centesimi. I centesimi vengono visualizzati su un indicatore analogico "
+"per rendere l'accordatura visivamente più intuitiva."
 
 #: data/io.github.nate_xyz.Chromatic.appdata.xml.in:24
 msgid "Added Audio and UI settings"
-msgstr ""
+msgstr "Aggiunte impostazioni audio e interfaccia utente"
 
 #: data/io.github.nate_xyz.Chromatic.appdata.xml.in:25
 msgid "Added Italian translation"
-msgstr ""
+msgstr "Aggiunta traduzione italiana"
 
 #: data/io.github.nate_xyz.Chromatic.gschema.xml:7
 msgid "Manually select audio device"
@@ -67,7 +71,7 @@ msgstr "Mostra indicatore widget"
 
 #: data/io.github.nate_xyz.Chromatic.gschema.xml:22
 msgid "Stream buffer size"
-msgstr ""
+msgstr "Dimensione del flusso di buffer"
 
 #: src/ui/window.ui:201
 msgid "_Preferences"
@@ -94,7 +98,7 @@ msgstr "Esci"
 
 #: src/ui/preferences_window.ui:18
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: src/ui/preferences_window.ui:22
 msgid "Manually Select"
@@ -113,11 +117,11 @@ msgstr "Dispositivo"
 
 #: src/ui/preferences_window.ui:47
 msgid "Buffer Size"
-msgstr ""
+msgstr "Dimensione buffer"
 
 #: src/ui/preferences_window.ui:48
 msgid "Stream buffer size, changes frequency update interval."
-msgstr ""
+msgstr "Dimensione del flusso di buffer, cambia l'intervallo di aggiornamento della frequenza."
 
 #: src/ui/preferences_window.ui:68
 msgid "UI"
@@ -129,28 +133,29 @@ msgstr "Mostra indicatore"
 
 #: src/ui/preferences_window.ui:88
 msgid "Gauge Pin Hover Time"
-msgstr ""
+msgstr "Tempo di passaggio del mouse sul perno del misuratore"
 
 #: src/ui/preferences_window.ui:89
 msgid ""
 "Duration (in seconds) the gauge pin will hover before returning to baseline."
 msgstr ""
+"Durata (in secondi) in cui il perno del misuratore rimarrà sospeso prima di tornare alla linea di base."
 
 #: src/ui/preferences_window.ui:106
 msgid "Label Update Hang Time"
-msgstr ""
+msgstr "Tempo di sospensione dell'aggiornamento dell'etichetta"
 
 #: src/ui/preferences_window.ui:107
 msgid "Duration (in seconds) the labels will hang before clearing display."
-msgstr ""
+msgstr "Durata (in secondi) in cui le etichette rimarranno bloccate prima di cancellare la visualizzazione."
 
 #: src/ui/preferences_window.ui:123
 msgid "Gauge Pin Resting Position"
-msgstr ""
+msgstr "Posizione di riposo del perno del misuratore"
 
 #: src/ui/preferences_window.ui:124
 msgid "Baseline position the pin returns to after hover time."
-msgstr ""
+msgstr "Posizione di base in cui ritorna il perno dopo il tempo di passaggio del mouse."
 
 #~ msgid ""
 #~ "Fine-tune your instruments with Chromatic. Displays exact frequency and "
