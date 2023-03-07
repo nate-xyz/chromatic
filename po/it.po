@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: chromatic\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-05 03:38-0500\n"
+"POT-Creation-Date: 2023-03-07 12:49-0500\n"
 "PO-Revision-Date: 2023-03-06 19:17+0100\n"
 "Last-Translator: Albano Battistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian\n"
@@ -43,11 +43,19 @@ msgstr "nate-xyz"
 
 #: data/io.github.nate_xyz.Chromatic.appdata.xml.in:10
 msgid ""
-"Fine-tune your instruments with Chromatic. Displays exact frequency and "
-"equivalent note with octave, as well as the cents of error."
+"Fine-tune your instruments with Chromatic. Chromatic detects the frequency "
+"of audio input and converts it to a music note with the correct semitone and "
+"octave, and displays the cents error. Cents are displayed on an analog gauge "
+"to make tuning more visually intuitive."
 msgstr ""
-"Accorda i tuoi strumenti con Chromatic. Visualizza la frequenza esatta e la "
-"nota equivalente con l'ottava, nonché i centesimi di errore."
+
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:24
+msgid "Added Audio and UI settings"
+msgstr ""
+
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:25
+msgid "Added Italian translation"
+msgstr ""
 
 #: data/io.github.nate_xyz.Chromatic.gschema.xml:7
 msgid "Manually select audio device"
@@ -57,11 +65,15 @@ msgstr "Seleziona manualmente il dispositivo audio"
 msgid "Show gauge widget"
 msgstr "Mostra indicatore widget"
 
-#: src/ui/window.ui:164
+#: data/io.github.nate_xyz.Chromatic.gschema.xml:22
+msgid "Stream buffer size"
+msgstr ""
+
+#: src/ui/window.ui:201
 msgid "_Preferences"
 msgstr "_Preferenze"
 
-#: src/ui/window.ui:172
+#: src/ui/window.ui:209
 msgid "_About Chromatic"
 msgstr "_Informazioni su Chromatic"
 
@@ -81,8 +93,8 @@ msgid "Quit"
 msgstr "Esci"
 
 #: src/ui/preferences_window.ui:18
-msgid "Audio Device"
-msgstr "Dispositivo audio"
+msgid "Audio"
+msgstr ""
 
 #: src/ui/preferences_window.ui:22
 msgid "Manually Select"
@@ -99,10 +111,53 @@ msgstr ""
 msgid "Device"
 msgstr "Dispositivo"
 
-#: src/ui/preferences_window.ui:51
+#: src/ui/preferences_window.ui:47
+msgid "Buffer Size"
+msgstr ""
+
+#: src/ui/preferences_window.ui:48
+msgid "Stream buffer size, changes frequency update interval."
+msgstr ""
+
+#: src/ui/preferences_window.ui:68
 msgid "UI"
 msgstr "Interfaccia utente"
 
-#: src/ui/preferences_window.ui:55
+#: src/ui/preferences_window.ui:72
 msgid "Show Gauge"
 msgstr "Mostra indicatore"
+
+#: src/ui/preferences_window.ui:88
+msgid "Gauge Pin Hover Time"
+msgstr ""
+
+#: src/ui/preferences_window.ui:89
+msgid ""
+"Duration (in seconds) the gauge pin will hover before returning to baseline."
+msgstr ""
+
+#: src/ui/preferences_window.ui:106
+msgid "Label Update Hang Time"
+msgstr ""
+
+#: src/ui/preferences_window.ui:107
+msgid "Duration (in seconds) the labels will hang before clearing display."
+msgstr ""
+
+#: src/ui/preferences_window.ui:123
+msgid "Gauge Pin Resting Position"
+msgstr ""
+
+#: src/ui/preferences_window.ui:124
+msgid "Baseline position the pin returns to after hover time."
+msgstr ""
+
+#~ msgid ""
+#~ "Fine-tune your instruments with Chromatic. Displays exact frequency and "
+#~ "equivalent note with octave, as well as the cents of error."
+#~ msgstr ""
+#~ "Accorda i tuoi strumenti con Chromatic. Visualizza la frequenza esatta e "
+#~ "la nota equivalente con l'ottava, nonché i centesimi di errore."
+
+#~ msgid "Audio Device"
+#~ msgstr "Dispositivo audio"
