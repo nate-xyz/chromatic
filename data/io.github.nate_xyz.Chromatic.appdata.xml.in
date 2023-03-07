@@ -18,6 +18,14 @@
   <url type="donation">https://ko-fi.com/natexyz</url>
 
 	<releases>
+    <release version="0.1.1" date="2023-03-06">
+      <description>
+        <ul>
+          <li>Added Audio and UI settings</li>
+          <li>Added Italian translation</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.1.0" date="2023-03-05"/>
   </releases>
 

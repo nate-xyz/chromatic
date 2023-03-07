@@ -184,32 +184,6 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/crossbeam-channel/crossbeam-channel-0.5.7.crate",
-        "sha256": "cf2b3e8478797446514c91ef04bafcb59faba183e621ad488df88983cc14128c",
-        "dest": "cargo/vendor/crossbeam-channel-0.5.7"
-    },
-    {
-        "type": "inline",
-        "contents": "{\"package\": \"cf2b3e8478797446514c91ef04bafcb59faba183e621ad488df88983cc14128c\", \"files\": {}}",
-        "dest": "cargo/vendor/crossbeam-channel-0.5.7",
-        "dest-filename": ".cargo-checksum.json"
-    },
-    {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/crossbeam-utils/crossbeam-utils-0.8.15.crate",
-        "sha256": "3c063cd8cc95f5c377ed0d4b49a4b21f632396ff690e8470c29b3359b346984b",
-        "dest": "cargo/vendor/crossbeam-utils-0.8.15"
-    },
-    {
-        "type": "inline",
-        "contents": "{\"package\": \"3c063cd8cc95f5c377ed0d4b49a4b21f632396ff690e8470c29b3359b346984b\", \"files\": {}}",
-        "dest": "cargo/vendor/crossbeam-utils-0.8.15",
-        "dest-filename": ".cargo-checksum.json"
-    },
-    {
-        "type": "archive",
-        "archive-type": "tar-gzip",
         "url": "https://static.crates.io/crates/env_logger/env_logger-0.7.1.crate",
         "sha256": "44533bbbb3bb3c1fa17d9f2e4e38bbbaf8396ba82193c4cb1b6445d711445d36",
         "dest": "cargo/vendor/env_logger-0.7.1"
