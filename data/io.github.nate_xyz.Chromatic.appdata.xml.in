@@ -18,6 +18,15 @@
   <url type="donation">https://ko-fi.com/natexyz</url>
 
 	<releases>
+    <release version="0.1.2" date="2023-03-08">
+      <description>
+        <ul>
+          <li>Window Title UI changes</li>
+          <li>Added French translation</li>
+          <li>Audio Device Switch bugfix</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.1.1" date="2023-03-06">
       <description>
         <ul>
@@ -47,7 +56,7 @@
 
 	<screenshots>
     <screenshot>
-      <image>https://raw.githubusercontent.com/nate-xyz/chromatic/main/data/screenshots/chromatic-0.png</image>
+      <image>https://raw.githubusercontent.com/nate-xyz/chromatic/main/data/screenshots/chromatic--0.png</image>
     </screenshot>
   </screenshots>
 

@@ -8,9 +8,9 @@ Chromatic detects the frequency of audio input, converts it to a musical note wi
 
 <br><br>
 
-![Screenshot 0](./data/screenshots/chromatic-0.png)
+![Screenshot 0](./data/screenshots/chromatic--0.png)
 
-<!-- Flatpak
+Flatpak
 --------------
 
 You can install stable builds of Chromatic from [Flathub](https://flathub.org)
@@ -19,7 +19,7 @@ by using this command:
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     flatpak install flathub io.github.nate_xyz.Chromatic
 
-<a href="https://flathub.org/apps/details/io.github.nate_xyz.Chromatic"><img src="https://flathub.org/assets/badges/flathub-badge-en.png" width="200"/></a> -->
+<a href="https://beta.flathub.org/apps/io.github.nate_xyz.Chromatic"><img src="https://flathub.org/assets/badges/flathub-badge-en.png" width="200"/></a>
 
 
 
