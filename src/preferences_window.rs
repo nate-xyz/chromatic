@@ -44,6 +44,9 @@ mod imp {
 
         #[template_child(id = "switch_gauge_visible")]
         pub switch_gauge_visible: TemplateChild<gtk::Switch>,
+        
+        #[template_child(id = "switch_title_visible")]
+        pub switch_title_visible: TemplateChild<gtk::Switch>,
 
         #[template_child(id = "device_row")]
         pub device_row: TemplateChild<adw::ComboRow>,
@@ -86,6 +89,7 @@ mod imp {
             Self {
                 switch_device_select: TemplateChild::default(),
                 switch_gauge_visible: TemplateChild::default(),
+                switch_title_visible: TemplateChild::default(),
                 device_row: TemplateChild::default(),
                 buffer_adj: TemplateChild::default(),
                 gauge_hang_adj: TemplateChild::default(),
@@ -154,6 +158,11 @@ impl PreferencesWindow {
 
         imp.settings
             .bind("show-gauge", &*imp.switch_gauge_visible, "active")
+            .flags(SettingsBindFlags::DEFAULT)
+            .build();
+
+        imp.settings
+            .bind("show-title", &*imp.switch_title_visible, "active")
             .flags(SettingsBindFlags::DEFAULT)
             .build();
 

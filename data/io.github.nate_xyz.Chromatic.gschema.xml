@@ -16,6 +16,12 @@
       <summary>Show gauge widget</summary>
     </key>
 
+
+    <key name="show-title" type="b">
+      <default>false</default>
+      <summary>Show window title</summary>
+    </key>
+
     <key name="buffer-size" type="d">
       <range min="1024.0" max="10240.0"/>
       <default>6144.0</default>

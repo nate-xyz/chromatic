@@ -51,6 +51,9 @@ mod imp {
         #[template_child(id = "toast_overlay")]
         pub toast_overlay: TemplateChild<adw::ToastOverlay>,
 
+        #[template_child(id = "window_title")]
+        pub window_title: TemplateChild<adw::WindowTitle>,
+
         #[template_child(id = "note_label")]
         pub note_label: TemplateChild<gtk::Label>,
 
@@ -102,6 +105,7 @@ mod imp {
 
             Self {
                 toast_overlay: TemplateChild::default(),
+                window_title: TemplateChild::default(),
                 note_label: TemplateChild::default(),
                 frequency_label: TemplateChild::default(),
                 cents_label: TemplateChild::default(),
@@ -180,6 +184,11 @@ impl Window {
 
         imp.gauge.replace(Some(gauge));
 
+        self.imp().settings
+            .bind("show-title", imp.window_title.upcast_ref::<glib::Object>(), "visible")
+            .flags(SettingsBindFlags::DEFAULT)
+            .build();
+        
         self.setup_channel();
         self.bind_signals();
     }

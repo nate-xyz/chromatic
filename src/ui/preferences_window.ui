@@ -69,6 +69,22 @@
       
               <child>
                 <object class="AdwActionRow">
+                  <property name="title" translatable="yes">Show Window Title</property>
+      
+                  <property name="activatable-widget">switch_title_visible</property>
+      
+                  <child>
+                    <object class="GtkSwitch" id="switch_title_visible">
+                      <property name="valign">3</property>
+                      <property name="active">false</property>
+                    </object>
+                  </child>
+      
+                </object>
+              </child>
+
+              <child>
+                <object class="AdwActionRow">
                   <property name="title" translatable="yes">Show Gauge</property>
       
                   <property name="activatable-widget">switch_gauge_visible</property>
