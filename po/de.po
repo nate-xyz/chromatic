@@ -1,0 +1,172 @@
+# ITALIAN TRANSLATION.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the chromatic package.
+# Fabian Geißer <fabian@geisser.dev>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: chromatic\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-11 10:51+0100\n"
+"PO-Revision-Date: 2023-03-11 10:51+0100\n"
+"Last-Translator: Fabian Geißer <fabian@geisser.dev>\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"X-Generator: Gtranslator 42.0\n"
+
+#: data/io.github.nate_xyz.Chromatic.desktop.in:3
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:6 src/ui/window.ui:18
+msgid "Chromatic"
+msgstr "Chromatic"
+
+#: data/io.github.nate_xyz.Chromatic.desktop.in:4
+msgid "Instrument Tuner"
+msgstr "Stimmgerät"
+
+#: data/io.github.nate_xyz.Chromatic.desktop.in:5
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:7
+msgid "Fine-tune your instruments"
+msgstr "Stimme deine Instrumente"
+
+#. Translators: Search terms to find this application. Do not translate or localize the semicolons! The list must also end with a semicolon.
+#: data/io.github.nate_xyz.Chromatic.desktop.in:12
+msgid "instrument;tuner;chromatic;"
+msgstr "Instrument; stimmen; Stimmgerät; chromatisch;"
+
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:8
+msgid "nate-xyz"
+msgstr "nate-xyz"
+
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:10
+msgid ""
+"Fine-tune your instruments with Chromatic. Chromatic detects the frequency "
+"of audio input and converts it to a music note with the correct semitone and "
+"octave, and displays the cents error. Cents are displayed on an analog gauge "
+"to make tuning more visually intuitive."
+msgstr ""
+"Stimme deine Instrumente mit Chromatic. Chromatic erkennt die Frequenz auf "
+"dem Audio-Eingang, konvertiert sie in die passende Musiknote und Oktave und "
+"zeigt die Abweichungen in Cent an. Die Abweichung wird zusätzlich auf einer "
+"analogen Anzeige angezeigt, um das Stimmen intuitiver zu machen."
+
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:24
+msgid "Added Audio and UI settings"
+msgstr ""
+
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:25
+msgid "Added Italian translation"
+msgstr ""
+
+#: data/io.github.nate_xyz.Chromatic.gschema.xml:7
+msgid "Manually select audio device"
+msgstr ""
+
+#: data/io.github.nate_xyz.Chromatic.gschema.xml:16
+msgid "Show gauge widget"
+msgstr "Zeige analogen Zeiger"
+
+#: data/io.github.nate_xyz.Chromatic.gschema.xml:22
+msgid "Stream buffer size"
+msgstr "Größe des Eingabebuffers"
+
+#: src/ui/window.ui:201
+msgid "_Preferences"
+msgstr "_Einstellungen"
+
+#: src/ui/window.ui:209
+msgid "_About Chromatic"
+msgstr "_über Chromatic"
+
+#: src/ui/help-overlay.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Allgemein"
+
+#: src/ui/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Tastenkombinationen"
+
+#: src/ui/help-overlay.ui:20
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Beenden"
+
+#: src/ui/preferences_window.ui:18
+msgid "Audio"
+msgstr "Audio"
+
+#: src/ui/preferences_window.ui:22
+msgid "Manually Select"
+msgstr "Wähle manuell"
+
+#: src/ui/preferences_window.ui:23
+msgid ""
+"Chromatic will try to automatically detect running input devices if disabled."
+msgstr ""
+"Wenn deaktiviert, wird Chromatic versuchen automatisch passende Eingabegeräte "
+"auszuwählen."
+
+#: src/ui/preferences_window.ui:40
+msgid "Device"
+msgstr "Gerät"
+
+#: src/ui/preferences_window.ui:47
+msgid "Buffer Size"
+msgstr "Größe des Zwischenspeichers"
+
+#: src/ui/preferences_window.ui:48
+msgid "Stream buffer size, changes frequency update interval."
+msgstr ""
+"Größe des Zwischenspeichers. Ändert die Häufigkeit der Frequenzaktualisierungen"
+
+#: src/ui/preferences_window.ui:68
+msgid "UI"
+msgstr "Benutzeroberfläche"
+
+#: src/ui/preferences_window.ui:72
+msgid "Show Gauge"
+msgstr "Zeige analogen Zeiger"
+
+#: src/ui/preferences_window.ui:88
+msgid "Gauge Pin Hover Time"
+msgstr "Verweildauer des Zeigers"
+
+#: src/ui/preferences_window.ui:89
+msgid ""
+"Duration (in seconds) the gauge pin will hover before returning to baseline."
+msgstr ""
+"Zeitdauer (in Sekunden), die der Zeiger die Position hält, bis er zur "
+"Grundlinie zurückkehrt"
+
+#: src/ui/preferences_window.ui:106
+msgid "Label Update Hang Time"
+msgstr "Verweildauer der Tonanzeige"
+
+#: src/ui/preferences_window.ui:107
+msgid "Duration (in seconds) the labels will hang before clearing display."
+msgstr ""
+"Zeitdauer (in Sekunden), für die Ton und Frequenz angezeigt werden."
+
+#: src/ui/preferences_window.ui:123
+msgid "Gauge Pin Resting Position"
+msgstr "Ruheposition des Zeigers"
+
+#: src/ui/preferences_window.ui:124
+msgid "Baseline position the pin returns to after hover time."
+msgstr ""
+"Position, an die der Zeiger zurückkehrt, wenn keine Eingabe erfolgt."
+
+#~ msgid ""
+#~ "Fine-tune your instruments with Chromatic. Displays exact frequency and "
+#~ "equivalent note with octave, as well as the cents of error."
+#~ msgstr ""
+#~ "Accorda i tuoi strumenti con Chromatic. Visualizza la frequenza esatta e "
+#~ "la nota equivalente con l'ottava, nonché i centesimi di errore."
+
+#~ msgid "Audio Device"
+#~ msgstr "Dispositivo audio"
