@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: chromatic\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-07 12:49-0500\n"
+"POT-Creation-Date: 2023-04-14 13:51-0400\n"
 "PO-Revision-Date: 2023-03-07 14:34+0100\n"
 "Last-Translator: Irénée Thirion <irenee.thirion@e.email>\n"
 "Language-Team: \n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Poedit 3.2.2\n"
 
 #: data/io.github.nate_xyz.Chromatic.desktop.in:3
-#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:6 src/ui/window.ui:18
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:6 src/ui/window.ui:28
 msgid "Chromatic"
 msgstr "Chromatique"
 
@@ -50,10 +50,23 @@ msgid ""
 msgstr ""
 
 #: data/io.github.nate_xyz.Chromatic.appdata.xml.in:24
-msgid "Added Audio and UI settings"
+msgid "Window Title UI changes"
 msgstr ""
 
 #: data/io.github.nate_xyz.Chromatic.appdata.xml.in:25
+msgid "Added French translation"
+msgstr ""
+
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:26
+#, fuzzy
+msgid "Audio Device Switch bugfix"
+msgstr "Périphérique audio"
+
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:33
+msgid "Added Audio and UI settings"
+msgstr ""
+
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:34
 msgid "Added Italian translation"
 msgstr ""
 
@@ -66,14 +79,32 @@ msgid "Show gauge widget"
 msgstr "Afficher le widget de la jauge"
 
 #: data/io.github.nate_xyz.Chromatic.gschema.xml:22
+msgid "Show window title"
+msgstr ""
+
+#: data/io.github.nate_xyz.Chromatic.gschema.xml:28
 msgid "Stream buffer size"
 msgstr ""
 
-#: src/ui/window.ui:201
+#: src/window.rs:244
+msgid "Unable to initialize audio backend."
+msgstr ""
+
+#: src/recorder.rs:155 src/recorder.rs:176 src/recorder.rs:206
+#: src/recorder.rs:241
+msgid "Unable to retrieve device ({device_name})"
+msgstr ""
+
+#. Translators: Only replace "Error!". Reorder if necessary
+#: src/toasts.rs:60
+msgid "<span foreground={ERROR_RED}>Error!</span> {error_msg}"
+msgstr ""
+
+#: src/ui/window.ui:187
 msgid "_Preferences"
 msgstr "_Préférences"
 
-#: src/ui/window.ui:209
+#: src/ui/window.ui:195
 msgid "_About Chromatic"
 msgstr "À _propos de Chromatique"
 
@@ -124,31 +155,35 @@ msgid "UI"
 msgstr "Interface"
 
 #: src/ui/preferences_window.ui:72
+msgid "Show Window Title"
+msgstr ""
+
+#: src/ui/preferences_window.ui:88
 msgid "Show Gauge"
 msgstr "Afficher la jauge"
 
-#: src/ui/preferences_window.ui:88
+#: src/ui/preferences_window.ui:104
 msgid "Gauge Pin Hover Time"
 msgstr ""
 
-#: src/ui/preferences_window.ui:89
+#: src/ui/preferences_window.ui:105
 msgid ""
 "Duration (in seconds) the gauge pin will hover before returning to baseline."
 msgstr ""
 
-#: src/ui/preferences_window.ui:106
+#: src/ui/preferences_window.ui:122
 msgid "Label Update Hang Time"
 msgstr ""
 
-#: src/ui/preferences_window.ui:107
+#: src/ui/preferences_window.ui:123
 msgid "Duration (in seconds) the labels will hang before clearing display."
 msgstr ""
 
-#: src/ui/preferences_window.ui:123
+#: src/ui/preferences_window.ui:139
 msgid "Gauge Pin Resting Position"
 msgstr ""
 
-#: src/ui/preferences_window.ui:124
+#: src/ui/preferences_window.ui:140
 msgid "Baseline position the pin returns to after hover time."
 msgstr ""
 
@@ -159,6 +194,3 @@ msgstr ""
 #~ "Accordez vos instruments avec Chromatique. L’application affiche la "
 #~ "fréquence exacte et la note équivalente avec l’octave, ainsi qu’une marge "
 #~ "d’erreur au centième."
-
-#~ msgid "Audio Device"
-#~ msgstr "Périphérique audio"
