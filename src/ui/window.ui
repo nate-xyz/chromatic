@@ -8,174 +8,178 @@
     <property name="handle-menubar-accel">true</property>
     <property name="resizable">true</property>
     <child>
-      <object class="AdwToastOverlay" id="toast_overlay">
-        <property name="child">
-          <object class="GtkBox">
-            <property name="orientation">vertical</property>
-
-            <style>
-              <class name="osd"/>
-            </style>
-            
-            <child>
-              <object class="AdwHeaderBar">
-                
-                <style>
-                  <class name="flat"/>
-                </style>
-
-                <property name="title-widget">
-                  <object class="AdwWindowTitle" id="window_title">
-                    <property name="visible">false</property>
-                    <property name="title" translatable="yes">Chromatic</property>
-                  </object>
-                </property>
-
-                <child type="end">
-                  <object class="GtkMenuButton">
-                    <property name="icon-name">open-menu-symbolic</property>
-                    <property name="menu-model">primary_menu</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-
-            <!-- MAIN PAGE -->
-            <child>
+      <object class="GtkWindowHandle">
+        <child>
+          <object class="AdwToastOverlay" id="toast_overlay">
+            <property name="child">
               <object class="GtkBox">
                 <property name="orientation">vertical</property>
-                <property name="hexpand">true</property>
-                <property name="vexpand">true</property>
-                <property name="halign">fill</property>
-                <property name="valign">fill</property>
 
-                <!-- INFO BOX -->
+                <style>
+                  <class name="osd"/>
+                </style>
 
                 <child>
-                  <object class="AdwLeaflet" id="leaflet">
-                    <property name="orientation">vertical</property>
-                    <property name="transition-type">slide</property>
-                    <property name="can-navigate-back">true</property>
-                    <property name="can-navigate-forward">true</property>
-                    <property name="fold-threshold-policy">natural</property>
+                  <object class="AdwHeaderBar">
 
+                    <style>
+                      <class name="flat"/>
+                    </style>
+
+                    <property name="title-widget">
+                      <object class="AdwWindowTitle" id="window_title">
+                        <property name="visible">false</property>
+                        <property name="title" translatable="yes">Chromatic</property>
+                      </object>
+                    </property>
+
+                    <child type="end">
+                      <object class="GtkMenuButton">
+                        <property name="icon-name">open-menu-symbolic</property>
+                        <property name="menu-model">primary_menu</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+
+                <!-- MAIN PAGE -->
+                <child>
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <property name="hexpand">true</property>
+                    <property name="vexpand">true</property>
+                    <property name="halign">fill</property>
+                    <property name="valign">fill</property>
+
+                    <!-- INFO BOX -->
 
                     <child>
-                      <object class="GtkBox" id="note_box">
-                        <property name="hexpand">true</property>
-                        <property name="vexpand">false</property>
-                        <property name="halign">fill</property>
-                        <property name="valign">fill</property>
-
-                        <property name="height_request">150</property>
-                        <property name="width_request">200</property>
-
-
+                      <object class="AdwLeaflet" id="leaflet">
+                        <property name="orientation">vertical</property>
+                        <property name="transition-type">slide</property>
+                        <property name="can-navigate-back">true</property>
+                        <property name="can-navigate-forward">true</property>
+                        <property name="fold-threshold-policy">natural</property>
 
 
                         <child>
-                          <object class="GtkBox">
-                            <property name="orientation">vertical</property>
+                          <object class="GtkBox" id="note_box">
                             <property name="hexpand">true</property>
-                            <property name="vexpand">true</property>
+                            <property name="vexpand">false</property>
                             <property name="halign">fill</property>
-                            <property name="valign">center</property>
+                            <property name="valign">fill</property>
+
+                            <property name="height_request">150</property>
+                            <property name="width_request">200</property>
 
 
-                            <property name="margin-top">15</property>
-                            <property name="margin-bottom">15</property>
-
-
-
-                            <child>
-                              <object class="GtkLabel" id="note_label">
-                                <property name="halign">center</property>
-                                <property name="valign">fill</property>
-                                <property name="label">--</property>
-                                <property name="ellipsize">end</property>
-                                <property name="use-markup">true</property>
-                                <property name="height_request">80</property>
-                              </object>
-                            </child>
-
-                            <child>
-                              <object class="GtkLabel" id="frequency_label">
-                                <property name="halign">center</property>
-                                <property name="valign">fill</property>
-                                <property name="label">-- Hz</property>
-                                <property name="ellipsize">end</property>
-                                <property name="use-markup">true</property>
-                                <property name="height_request">30</property>
-
-                                <attributes>
-                                  <attribute name="style" value="oblique"/>
-                                  <attribute name="weight" value="PANGO_WEIGHT_ULTRALIGHT"/>
-                                  <attribute name="scale" value="1"/>
-                                </attributes>
-
-                                <style>
-                                  <class name="title-2"/>
-                                </style>
-
-                              </object>
-                            </child>
 
 
                             <child>
-                              <object class="GtkLabel" id="cents_label">
-                                <property name="halign">center</property>
-                                <property name="valign">fill</property>
-                                <property name="label">-- ¢</property>
-                                <property name="ellipsize">end</property>
-                                <property name="use-markup">true</property>
-                                <property name="height_request">25</property>
+                              <object class="GtkBox">
+                                <property name="orientation">vertical</property>
+                                <property name="hexpand">true</property>
+                                <property name="vexpand">true</property>
+                                <property name="halign">fill</property>
+                                <property name="valign">center</property>
 
-                                <attributes>
-                                  <attribute name="style" value="oblique"/>
-                                  <attribute name="weight" value="PANGO_WEIGHT_ULTRALIGHT"/>
-                                </attributes>
 
-                                <style>
-                                  <class name="title-4"/>
-                                </style>
+                                <property name="margin-top">15</property>
+                                <property name="margin-bottom">15</property>
 
+
+
+                                <child>
+                                  <object class="GtkLabel" id="note_label">
+                                    <property name="halign">center</property>
+                                    <property name="valign">fill</property>
+                                    <property name="label">--</property>
+                                    <property name="ellipsize">end</property>
+                                    <property name="use-markup">true</property>
+                                    <property name="height_request">80</property>
+                                  </object>
+                                </child>
+
+                                <child>
+                                  <object class="GtkLabel" id="frequency_label">
+                                    <property name="halign">center</property>
+                                    <property name="valign">fill</property>
+                                    <property name="label">-- Hz</property>
+                                    <property name="ellipsize">end</property>
+                                    <property name="use-markup">true</property>
+                                    <property name="height_request">30</property>
+
+                                    <attributes>
+                                      <attribute name="style" value="oblique"/>
+                                      <attribute name="weight" value="PANGO_WEIGHT_ULTRALIGHT"/>
+                                      <attribute name="scale" value="1"/>
+                                    </attributes>
+
+                                    <style>
+                                      <class name="title-2"/>
+                                    </style>
+
+                                  </object>
+                                </child>
+
+
+                                <child>
+                                  <object class="GtkLabel" id="cents_label">
+                                    <property name="halign">center</property>
+                                    <property name="valign">fill</property>
+                                    <property name="label">-- ¢</property>
+                                    <property name="ellipsize">end</property>
+                                    <property name="use-markup">true</property>
+                                    <property name="height_request">25</property>
+
+                                    <attributes>
+                                      <attribute name="style" value="oblique"/>
+                                      <attribute name="weight" value="PANGO_WEIGHT_ULTRALIGHT"/>
+                                    </attributes>
+
+                                    <style>
+                                      <class name="title-4"/>
+                                    </style>
+
+                                  </object>
+                                </child>
                               </object>
                             </child>
+
+
                           </object>
                         </child>
 
-
-                      </object>
-                    </child>
-
-                    <child>
-                      <object class="GtkBox" id="gauge_box">
-                        <property name="hexpand">true</property>
-                        <property name="vexpand">true</property>
-                        <property name="halign">fill</property>
-                        <property name="valign">fill</property>
-
-                        <property name="height_request">200</property>
-                        <property name="width_request">550</property>
-
                         <child>
-                          <object class="AdwBin" id="gauge_bin"></object>
+                          <object class="GtkBox" id="gauge_box">
+                            <property name="hexpand">true</property>
+                            <property name="vexpand">true</property>
+                            <property name="halign">fill</property>
+                            <property name="valign">fill</property>
+
+                            <property name="height_request">200</property>
+                            <property name="width_request">550</property>
+
+                            <child>
+                              <object class="AdwBin" id="gauge_bin"></object>
+                            </child>
+
+                          </object>
                         </child>
 
                       </object>
                     </child>
 
+
+
+
                   </object>
                 </child>
 
-
-
-
               </object>
-            </child>
-
+            </property>
           </object>
-        </property>
+        </child>
       </object>
     </child>
   </template>
