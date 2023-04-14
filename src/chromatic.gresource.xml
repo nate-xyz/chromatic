@@ -4,6 +4,6 @@
     <file alias="window.ui" preprocess="xml-stripblanks">ui/window.ui</file>
     <file alias="help-overlay.ui" preprocess="xml-stripblanks">ui/help-overlay.ui</file>
     <file alias="preferences_window.ui" preprocess="xml-stripblanks">ui/preferences_window.ui</file>
-    <!-- <file>style.css</file> -->
+    <file>style.css</file>
   </gresource>
 </gresources>

@@ -117,6 +117,7 @@
 
                                     <style>
                                       <class name="title-2"/>
+                                      <class name="tab-nums"/>
                                     </style>
 
                                   </object>
@@ -139,6 +140,7 @@
 
                                     <style>
                                       <class name="title-4"/>
+                                      <class name="tab-nums"/>
                                     </style>
 
                                   </object>
