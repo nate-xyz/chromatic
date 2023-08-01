@@ -1,0 +1,201 @@
+# BRAZILIAN PORTUGUESE TRANSLATION.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the chromatic package.
+# FIRST AUTHOR <mathessaricci@mailo.com>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: chromatic\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-14 13:51-0400\n"
+"PO-Revision-Date: 2023-08-01 12:04+0100\n"
+"Last-Translator: Matheus Tessarini Ricci <mathessaricci@mailo.com>\n"
+"Language-Team: \n"
+"Language: pt_br\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: GNOME Builder 43.6\n"
+
+#: data/io.github.nate_xyz.Chromatic.desktop.in:3
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:6 src/ui/window.ui:28
+msgid "Chromatic"
+msgstr "Chromatic"
+
+#: data/io.github.nate_xyz.Chromatic.desktop.in:4
+msgid "Instrument Tuner"
+msgstr "Afinador de instrumentos"
+
+#: data/io.github.nate_xyz.Chromatic.desktop.in:5
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:7
+msgid "Fine-tune your instruments"
+msgstr "Afine seus instrumentos"
+
+#. Translators: Search terms to find this application. Do not translate or localize the semicolons! The list must also end with a semicolon.
+#: data/io.github.nate_xyz.Chromatic.desktop.in:12
+msgid "instrument;tuner;chromatic;"
+msgstr "instrumento;afinador;chromatic;"
+
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:8
+msgid "nate-xyz"
+msgstr "nate-xyz"
+
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:10
+msgid ""
+"Fine-tune your instruments with Chromatic. Chromatic detects the frequency "
+"of audio input and converts it to a music note with the correct semitone and "
+"octave, and displays the cents error. Cents are displayed on an analog gauge "
+"to make tuning more visually intuitive."
+msgstr "Afine seus instrumentos com o Chromatic. Ele detecta as frequências "
+"de entrada de áudio e as converte em notas musicais com o semitom correto e "
+"oitavas, mostrando os erros de centésimas. Essas são mostradas de forma "
+"analógica, afim de deixar a afinação mais intuitiva. "
+
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:24
+msgid "Window Title UI changes"
+msgstr "Mudanças no título da janela da interface"
+
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:25
+msgid "Added French translation"
+msgstr "Adicionada tradução para o francês"
+
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:26
+#, fuzzy
+msgid "Audio Device Switch bugfix"
+msgstr "Correção de bugs na mudança de dispositivos"
+
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:33
+msgid "Added Audio and UI settings"
+msgstr "Adicionada configurações da interface e áudio"
+
+#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:34
+msgid "Added Italian translation"
+msgstr "Adicionada tradução para o italiano"
+
+#: data/io.github.nate_xyz.Chromatic.gschema.xml:7
+msgid "Manually select audio device"
+msgstr "Selecionar manualmente o dispositivo de áudio"
+
+#: data/io.github.nate_xyz.Chromatic.gschema.xml:16
+msgid "Show gauge widget"
+msgstr "Afficher le widget de la jauge"
+
+#: data/io.github.nate_xyz.Chromatic.gschema.xml:22
+msgid "Show window title"
+msgstr "Mostrar título da janela"
+
+#: data/io.github.nate_xyz.Chromatic.gschema.xml:28
+msgid "Stream buffer size"
+msgstr "Tamanho do stream buffer"
+
+#: src/window.rs:244
+msgid "Unable to initialize audio backend."
+msgstr "Não foi possível iniciar o beckend de áudio. "
+
+#: src/recorder.rs:155 src/recorder.rs:176 src/recorder.rs:206
+#: src/recorder.rs:241
+msgid "Unable to retrieve device ({device_name})"
+msgstr "Não foi possível buscar o dispositivo ({device_name})"
+
+#. Translators: Only replace "Error!". Reorder if necessary
+#: src/toasts.rs:60
+msgid "<span foreground={ERROR_RED}>Error!</span> {error_msg}"
+msgstr "<span foreground={ERROR_RED}>Error!</span> {error_msg}"
+
+#: src/ui/window.ui:187
+msgid "_Preferences"
+msgstr "_Preferências"
+
+#: src/ui/window.ui:195
+msgid "_About Chromatic"
+msgstr "_Sobre o Chromatic"
+
+#: src/ui/help-overlay.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Geral"
+
+#: src/ui/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Mostrar atalhos"
+
+#: src/ui/help-overlay.ui:20
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Sair"
+
+#: src/ui/preferences_window.ui:18
+msgid "Audio"
+msgstr "Áudio"
+
+#: src/ui/preferences_window.ui:22
+msgid "Manually Select"
+msgstr "Selecionar manualmente"
+
+#: src/ui/preferences_window.ui:23
+msgid ""
+"Chromatic will try to automatically detect running input devices if disabled."
+msgstr ""
+"Se desativado, Chromatic vai tentar detectar dispositivos de entrada "
+"automaticamente. "
+
+#: src/ui/preferences_window.ui:40
+msgid "Device"
+msgstr "Dispositivo"
+
+#: src/ui/preferences_window.ui:47
+msgid "Buffer Size"
+msgstr "Tamanho do buffer"
+
+#: src/ui/preferences_window.ui:48
+msgid "Stream buffer size, changes frequency update interval."
+msgstr "Tamanho do buffer, muda o intervalo de atualização de frequência"
+
+#: src/ui/preferences_window.ui:68
+msgid "UI"
+msgstr "Interface"
+
+#: src/ui/preferences_window.ui:72
+msgid "Show Window Title"
+msgstr "Mostrar Título da Janela"
+
+#: src/ui/preferences_window.ui:88
+msgid "Show Gauge"
+msgstr "Mostrar medidor analógico"
+
+#: src/ui/preferences_window.ui:104
+msgid "Gauge Pin Hover Time"
+msgstr "Tempo de oscilação do ponteiro do medidor analógico"
+
+#: src/ui/preferences_window.ui:105
+msgid ""
+"Duration (in seconds) the gauge pin will hover before returning to baseline."
+msgstr "Duração (em segundos) que o ponteiro do medidor irá oscilar antes de"
+"retornar ao estado inicial. "
+
+#: src/ui/preferences_window.ui:122
+msgid "Label Update Hang Time"
+msgstr "Rótulo de Atualização do tempo de oscilação"
+
+#: src/ui/preferences_window.ui:123
+msgid "Duration (in seconds) the labels will hang before clearing display."
+msgstr "Duração (em segundos) que o rótulo irá aparecer depois de limpar"
+"o display. "
+
+#: src/ui/preferences_window.ui:139
+msgid "Gauge Pin Resting Position"
+msgstr "Posição de descanso do ponteiro do medidor analógico"
+
+#: src/ui/preferences_window.ui:140
+msgid "Baseline position the pin returns to after hover time."
+msgstr "Posição inicial do ponteiro depois de oscilar. "
+
+#~ msgid ""
+#~ "Fine-tune your instruments with Chromatic. Displays exact frequency and "
+#~ "equivalent note with octave, as well as the cents of error."
+#~ msgstr ""
+#~ "Accordez vos instruments avec Chromatique. L’application affiche la "
+#~ "fréquence exacte et la note équivalente avec l’octave, ainsi qu’une marge "
+#~ "d’erreur au centième."
