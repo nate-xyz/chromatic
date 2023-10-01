@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: chromatic\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-14 13:51-0400\n"
+"POT-Creation-Date: 2023-10-01 05:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,26 +46,6 @@ msgid ""
 "of audio input and converts it to a music note with the correct semitone and "
 "octave, and displays the cents error. Cents are displayed on an analog gauge "
 "to make tuning more visually intuitive."
-msgstr ""
-
-#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:24
-msgid "Window Title UI changes"
-msgstr ""
-
-#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:25
-msgid "Added French translation"
-msgstr ""
-
-#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:26
-msgid "Audio Device Switch bugfix"
-msgstr ""
-
-#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:33
-msgid "Added Audio and UI settings"
-msgstr ""
-
-#: data/io.github.nate_xyz.Chromatic.appdata.xml.in:34
-msgid "Added Italian translation"
 msgstr ""
 
 #: data/io.github.nate_xyz.Chromatic.gschema.xml:7
