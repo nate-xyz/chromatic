@@ -1,44 +1,46 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Turkish translation for chromatic.
+# Copyright (C) 2023 THE chromatic'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the chromatic package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
+# Ulvican Kahya <ulvicankahya@gmail.com>, 2023.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: chromatic\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-01 05:23+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2023-10-02 19:29+0300\n"
+"Last-Translator: Ulvican Kahya (ulville) <ulvicankahya@gmail.com>\n"
+"Language-Team: Türkçe <takim@gnome.org.tr>\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/io.github.nate_xyz.Chromatic.desktop.in:3
 #: data/io.github.nate_xyz.Chromatic.appdata.xml.in:6 src/ui/window.ui:28
 msgid "Chromatic"
-msgstr ""
+msgstr "Chromatic"
 
 #: data/io.github.nate_xyz.Chromatic.desktop.in:4
 msgid "Instrument Tuner"
-msgstr ""
+msgstr "Enstrüman Akort Aleti"
 
 #: data/io.github.nate_xyz.Chromatic.desktop.in:5
 #: data/io.github.nate_xyz.Chromatic.appdata.xml.in:7
 msgid "Fine-tune your instruments"
-msgstr ""
+msgstr "Enstrümanlarınızın akort ayarını yapın"
 
 #. Translators: Search terms to find this application. Do not translate or localize the semicolons! The list must also end with a semicolon.
 #: data/io.github.nate_xyz.Chromatic.desktop.in:12
 msgid "instrument;tuner;chromatic;"
-msgstr ""
+msgstr "enstrüman;akort;chromatic;"
 
 #: data/io.github.nate_xyz.Chromatic.appdata.xml.in:8
 msgid "nate-xyz"
-msgstr ""
+msgstr "nate-xyz"
 
 #: data/io.github.nate_xyz.Chromatic.appdata.xml.in:10
 msgid ""
@@ -47,118 +49,128 @@ msgid ""
 "octave, and displays the cents error. Cents are displayed on an analog gauge "
 "to make tuning more visually intuitive."
 msgstr ""
+"Enstrümanlarınızı Chromatic ile akort edin. Chromatic, ses girdisinin "
+"frekansını tespit ederek bunu doğru yarım ses aralığı ve sekizli ile bir "
+"müzik notasına dönüştürür ve hatayı cent cinsinden gösterir. Akort işlemini "
+"görsel olarak daha sezgisel yapmak için cent'ler analog bir gösterge "
+"üzerinde gösterilir."
 
 #: data/io.github.nate_xyz.Chromatic.gschema.xml:7
 msgid "Manually select audio device"
-msgstr ""
+msgstr "Ses aygıtını elle seç"
 
 #: data/io.github.nate_xyz.Chromatic.gschema.xml:16
 msgid "Show gauge widget"
-msgstr ""
+msgstr "Gösterge parçacığını göster"
 
 #: data/io.github.nate_xyz.Chromatic.gschema.xml:22
 msgid "Show window title"
-msgstr ""
+msgstr "Pencere başlığını göster"
 
 #: data/io.github.nate_xyz.Chromatic.gschema.xml:28
 msgid "Stream buffer size"
-msgstr ""
+msgstr "Akış tampon boyutu"
 
 #: src/window.rs:244
 msgid "Unable to initialize audio backend."
-msgstr ""
+msgstr "Ses arka ucu başlatılamadı."
 
 #: src/recorder.rs:155 src/recorder.rs:176 src/recorder.rs:206
 #: src/recorder.rs:241
 msgid "Unable to retrieve device ({device_name})"
-msgstr ""
+msgstr "({device_name}) aygıtına erişilemedi"
 
 #. Translators: Only replace "Error!". Reorder if necessary
 #: src/toasts.rs:60
 msgid "<span foreground={ERROR_RED}>Error!</span> {error_msg}"
-msgstr ""
+msgstr "<span foreground={ERROR_RED}>Hata!</span> {error_msg}"
 
 #: src/ui/window.ui:187
 msgid "_Preferences"
-msgstr ""
+msgstr "_Tercihler"
 
 #: src/ui/window.ui:195
 msgid "_About Chromatic"
-msgstr ""
+msgstr "Chromatic _Hakkında"
 
 #: src/ui/help-overlay.ui:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "Genel"
 
 #: src/ui/help-overlay.ui:14
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr ""
+msgstr "Kısayolları Göster"
 
 #: src/ui/help-overlay.ui:20
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
+msgstr "Çık"
 
 #: src/ui/preferences_window.ui:18
 msgid "Audio"
-msgstr ""
+msgstr "Ses"
 
 #: src/ui/preferences_window.ui:22
 msgid "Manually Select"
-msgstr ""
+msgstr "Elle Seç"
 
 #: src/ui/preferences_window.ui:23
 msgid ""
 "Chromatic will try to automatically detect running input devices if disabled."
 msgstr ""
+"Devre dışı bırakılırsa Chromatic çalışan girdi aygıtlarını kendiliğinden "
+"tespit etmeye çalışacak."
 
 #: src/ui/preferences_window.ui:40
 msgid "Device"
-msgstr ""
+msgstr "Aygıt"
 
 #: src/ui/preferences_window.ui:47
 msgid "Buffer Size"
-msgstr ""
+msgstr "Tampon Boyutu"
 
 #: src/ui/preferences_window.ui:48
 msgid "Stream buffer size, changes frequency update interval."
-msgstr ""
+msgstr "Akış tampon boyutu, frekans güncelleme sıklığını değiştirir."
 
 #: src/ui/preferences_window.ui:68
 msgid "UI"
-msgstr ""
+msgstr "Arayüz"
 
 #: src/ui/preferences_window.ui:72
 msgid "Show Window Title"
-msgstr ""
+msgstr "Pencere Başlığını Göster"
 
 #: src/ui/preferences_window.ui:88
 msgid "Show Gauge"
-msgstr ""
+msgstr "Göstergeyi Göster"
 
 #: src/ui/preferences_window.ui:104
 msgid "Gauge Pin Hover Time"
-msgstr ""
+msgstr "Gösterge İğnesi Bekleme Süresi"
 
 #: src/ui/preferences_window.ui:105
 msgid ""
 "Duration (in seconds) the gauge pin will hover before returning to baseline."
 msgstr ""
+"Gösterge iğnesinin taban hizasına dönmeden önce bekleyeceği süre (saniye "
+"cinsinden)"
 
 #: src/ui/preferences_window.ui:122
 msgid "Label Update Hang Time"
-msgstr ""
+msgstr "İfade Güncelleme Donma Süresi"
 
 #: src/ui/preferences_window.ui:123
 msgid "Duration (in seconds) the labels will hang before clearing display."
 msgstr ""
+"Ekran temizlenmeden önce ifadelerin askıda kalacağı süre (saniye cinsinden)"
 
 #: src/ui/preferences_window.ui:139
 msgid "Gauge Pin Resting Position"
-msgstr ""
+msgstr "Gösterge iğnesi Dinlenme Konumu"
 
 #: src/ui/preferences_window.ui:140
 msgid "Baseline position the pin returns to after hover time."
-msgstr ""
+msgstr "İğnenin bekleme süresinden sonra döndüğü taban hizasının konumu."
